@@ -41,6 +41,12 @@ What are these `IntegerPKColumn`, `BigIntegerIndexColumn`, `BooleanDefaultFalseC
 These are just type aliases created with `typing.Annotated` function that adds context-specific metadata to a type,
 so that you don't need to specify all these extra assignments to `mapped_column` function
 
+## Links
+
+* [Homepage](https://github.com/mishaga/sqlalchemy-annotations)
+* [Issues](https://github.com/mishaga/sqlalchemy-annotations/issues)
+* [PYPI](https://pypi.org/project/sqlalchemy-annotations/)
+
 ## Examples
 
 ### Integers (INTEGER, BIGINT, SERIAL, BIGSERIAL)
