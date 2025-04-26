@@ -1,0 +1,61 @@
+[project]
+name = "sqlalchemy-annotations"
+version = "0.0.1"
+authors = ["Mikhail Shagov <mishaga@me.com>"]
+description = "Table column annotations for SQLAlchemy (v2)"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+license-files = ["LICENSE"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Information Technology",
+    "Operating System :: OS Independent",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Internet",
+]
+dependencies = [
+    "sqlalchemy==2.*",
+]
+
+
+[dependency-groups]
+dev = [
+    "mypy>=1.15.0",
+    "ruff>=0.11.6",
+]
+
+
+[project.urls]
+Homepage = "https://github.com/mishaga/sqlalchemy-annotations"
+Issues = "https://github.com/mishaga/sqlalchemy-annotations/issues"
+
+
+[tool.ruff]
+line-length = 120
+indent-width = 4
+
+
+[tool.ruff.format]
+quote-style = "single"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "lf"
+
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = ["Q000", "Q003", "COM812", "D100", "D104", "D105", "D106", "D107", "D401"]
+
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
