@@ -19,8 +19,9 @@ from ._numbers import (
 )
 from ._strings import TextColumn, TextIndexColumn, TextPKColumn, TextUniqueColumn
 from ._uuids import UUIDColumn, UUIDIndexColumn, UUIDPKColumn
+from ._enums import StrEnumColumn
 
-__all__ = [
+__all__ = (
     'BigIntegerColumn',
     'BigIntegerIndexColumn',
     'BigIntegerPKColumn',
@@ -45,4 +46,5 @@ __all__ = [
     'UUIDColumn',
     'UUIDIndexColumn',
     'UUIDPKColumn',
-]
+    'StrEnumColumn',
+)

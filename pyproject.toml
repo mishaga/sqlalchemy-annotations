@@ -1,6 +1,6 @@
 [project]
 name = "sqlalchemy-annotations"
-version = "0.0.1"
+version = "0.0.2"
 authors = [
     { name = "Mikhail Shagov", email = "mishaga@me.com" },
 ]
@@ -36,6 +36,7 @@ dependencies = [
 [dependency-groups]
 dev = [
     "mypy>=1.15.0",
+    "psycopg2-binary>=2.9.10",
     "pytest>=8.3.5",
     "ruff>=0.11.6",
 ]
