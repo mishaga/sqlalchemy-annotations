@@ -209,11 +209,10 @@ class Model(Base):
 ### String enums (VARCHAR)
 
 This annotation will not create a native enum  
-The column will be `VARCHAR` (without length limit) so that you can easily update your enum
+The column in the database will be `VARCHAR` (without length limit) so that you can easily update
+your enum in your python code
 
-* `BooleanColumn` – `BOOLEAN`
-* `BooleanDefaultFalseColumn` – `BOOLEAN` with `default=False`
-* `BooleanDefaultTrueColumn` – `BOOLEAN` with `default=True`
+* `StrEnumColumn` – `VARCHAR`
 
 ```python
 from enum import StrEnum
