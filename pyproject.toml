@@ -7,7 +7,7 @@ authors = [
 maintainers = [
     { name = "Mikhail Shagov", email = "mishaga@me.com" },
 ]
-description = "Table column annotations for SQLAlchemy (v2)"
+description = "Table column annotations for SQLAlchemy"
 readme = "README.md"
 requires-python = ">=3.10"
 license = "MIT"

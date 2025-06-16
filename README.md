@@ -1,6 +1,6 @@
 # Table column annotations for SQLAlchemy
 
-> Table column annotations for [SQLAlchemy](https://pypi.org/project/SQLAlchemy/) (v2)
+> Table column annotations for [SQLAlchemy](https://pypi.org/project/SQLAlchemy/)
 
 Instead of this:
 
@@ -89,15 +89,19 @@ from sqlalchemy_annotations import TextColumn, TextIndexColumn, TextPKColumn, Te
 
 class Model(Base):
     id: Mapped[TextPKColumn]
+    # equivalent to
     # id: Mapped[str] = mapped_column(sa.Text(), primary_key=True)
 
     name: Mapped[TextColumn]
+    # equivalent to
     # name: Mapped[str] = mapped_column(sa.Text(), default='')
 
     email: Mapped[TextUniqueColumn]
+    # equivalent to
     # email: Mapped[str] = mapped_column(sa.Text(), unique=True)
 
     ext_id: Mapped[TextIndexColumn]
+    # equivalent to
     # ext_id: Mapped[str] = mapped_column(sa.Text(), index=True)
 ```
 
@@ -114,12 +118,15 @@ from sqlalchemy_annotations import UUIDColumn, UUIDIndexColumn, UUIDPKColumn
 
 class Model(Base):
     id: Mapped[UUIDPKColumn]
+    # equivalent to
     # id: Mapped[str] = mapped_column(sa.Uuid(), primary_key=True, default=uuid4)
 
     token: Mapped[UUIDIndexColumn]
+    # equivalent to
     # token: Mapped[str] = mapped_column(sa.Uuid(), index=True, default=uuid4)
 
     ext_id: Mapped[UUIDColumn]
+    # equivalent to
     # ext_id: Mapped[str] = mapped_column(sa.Uuid(), default=uuid4)
 ```
 
@@ -145,22 +152,29 @@ from sqlalchemy_annotations import (
 
 class Model(Base):
     ...
+
     birthday: Mapped[DateColumn]
+    # equivalent to
     # birthday: Mapped[date] = mapped_column(sa.Date())
 
     start_at: Mapped[TimeColumn]
+    # equivalent to
     # start_at: Mapped[time] = mapped_column(sa.Time(timezone=True))
 
     notify_at: Mapped[TimeWOTimezoneColumn]
+    # equivalent to
     # notify_at: Mapped[time] = mapped_column(sa.Time(timezone=False))
 
     approved_at: Mapped[DateTimeColumn]
+    # equivalent to
     # approved_at: Mapped[datetime] = mapped_column(sa.DateTime(timezone=True))
 
     failed_at: Mapped[DateTimeWOTimezoneColumn]
+    # equivalent to
     # failed_at: Mapped[datetime] = mapped_column(sa.DateTime(timezone=False))
 
     created_at: Mapped[DateTimeDefaultUtcNowColumn]
+    # equivalent to
     # created_at: Mapped[datetime] = mapped_column(sa.DateTime(timezone=True), default=lambda: datetime.now(tz=UTC))
 ```
 
@@ -177,44 +191,56 @@ from sqlalchemy_annotations import BooleanColumn, BooleanDefaultFalseColumn, Boo
 
 class Model(Base):
     ...
+
     is_active: Mapped[BooleanColumn]
+    # equivalent to
     # is_active: Mapped[bool] = mapped_column(Boolean())
 
     is_confirmed: Mapped[BooleanDefaultFalseColumn]
+    # equivalent to
     # is_confirmed: Mapped[bool] = mapped_column(Boolean(), default=False)
 
     is_visible: Mapped[BooleanDefaultTrueColumn]
+    # equivalent to
     # is_visible: Mapped[bool] = mapped_column(Boolean(), default=True)
 ```
 
-## More complex example (and a note on contribution)
 
-If you need to more functionality and flexibility, you still can use regular SQLAlchemy functionality:
+### String enums (VARCHAR)
+
+This annotation will not create a native enum  
+The column will be `VARCHAR` (without length limit) so that you can easily update your enum
+
+* `BooleanColumn` – `BOOLEAN`
+* `BooleanDefaultFalseColumn` – `BOOLEAN` with `default=False`
+* `BooleanDefaultTrueColumn` – `BOOLEAN` with `default=True`
 
 ```python
 from enum import StrEnum
 
-import sqlalchemy as sa
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped
+from sqlalchemy_annotations import StrEnumColumn
 
 
-class UserKind(StrEnum):
-    GUEST = 'GUEST'
-    MODERATOR = 'MODERATOR'
-    ADMIN = 'ADMIN'
+class UserStatus(StrEnum):
+    REGISTERED = 'REGISTERED'
+    ACTIVATED = 'ACTIVATED'
+    BANNED = 'BANNED'
 
 
-class User(Base):
-    id: Mapped[int] = mapped_column(sa.BigInteger(), sa.Identity(always=False), primary_key=True)
-    kind: Mapped[UserKind] = mapped_column(
-        sa.Enum(UserKind, native_enum=False, length=None),
-        default=UserKind.GUEST,
-    )
+class Model(Base):
+    ...
+
+    status: Mapped[StrEnumColumn[UserStatus]]
+    # equivalent to
+    # status: Mapped[UserStatus] = mapped_column(Enum(UserStatus, native_enum=False, length=None))
 ```
+
+## A note on contribution
 
 This is opensource project  
 So if you find something that you can add of fix, feel free to
 open an [issue](https://github.com/mishaga/sqlalchemy-annotations/issues)
 and raise a [pull request](https://github.com/mishaga/sqlalchemy-annotations/pulls)
 
-Good luck!
+Thank you!
