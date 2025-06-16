@@ -1,5 +1,5 @@
-from typing import Annotated, TypeVar, Generic
 from enum import StrEnum
+from typing import Annotated, Generic, TypeVar
 
 from sqlalchemy import Enum
 from sqlalchemy.orm import mapped_column

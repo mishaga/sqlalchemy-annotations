@@ -7,6 +7,7 @@ from ._dates import (
     TimeColumn,
     TimeWOTimezoneColumn,
 )
+from ._enums import StrEnumColumn
 from ._numbers import (
     BigIntegerColumn,
     BigIntegerIndexColumn,
@@ -19,7 +20,6 @@ from ._numbers import (
 )
 from ._strings import TextColumn, TextIndexColumn, TextPKColumn, TextUniqueColumn
 from ._uuids import UUIDColumn, UUIDIndexColumn, UUIDPKColumn
-from ._enums import StrEnumColumn
 
 __all__ = (
     'BigIntegerColumn',
@@ -37,6 +37,7 @@ __all__ = (
     'IntegerIndexColumn',
     'IntegerPKColumn',
     'SerialPKColumn',
+    'StrEnumColumn',
     'TextColumn',
     'TextIndexColumn',
     'TextPKColumn',
@@ -46,5 +47,4 @@ __all__ = (
     'UUIDColumn',
     'UUIDIndexColumn',
     'UUIDPKColumn',
-    'StrEnumColumn',
 )
